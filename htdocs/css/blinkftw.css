@@ -1,12 +1,11 @@
-/*
- * blinkftw.css is provided by mrdoob (https://github.com/mrdoob/blinkftw)
- */
-@-webkit-keyframes blink { 70% { visibility: hidden; } }
-@-moz-keyframes blink { 70% { visibility: hidden; } }
-@keyframes blink { 70% { visibility: hidden; } }
-
-blink {
-	-webkit-animation: blink 0.5s alternate steps(1) infinite;
-	-moz-animation: blink 0.5s alternate steps(1) infinite;
-	animation: blink 0.5s alternate steps(1) infinite;
+/* (mis-)using blinkftw.css for TIM Group specific customisation of nagdash style */
+tr td span.detail {
+ display: inherit !important;
+  font-size: 0.6em;
+}
+tr td span.controls {
+  display: inherit !important;
+}
+table#broken_services tr {
+ line-height: 22px
 }
