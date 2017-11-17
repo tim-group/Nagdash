@@ -21,9 +21,9 @@ echo $control;
     </ul>
 
 <?php
-if (strpos($host, 'app') !== false) {
-   $short_host = strtok($host, '.');
-   $status = "<a class='btn btn-mini' target='_blank' href='https://status-pages-pg.timgroup.com/{$short_host}:8000'>Status</a>";
+$host_parts = explode('.', $host);                                                                                                           
+if (strpos($host_parts[0], 'app') !== false && sizeof($host_parts) > 2) {                                                                    
+   $status = "<a class='btn btn-mini' target='_blank' href='https://status-pages-{$host_parts[2]}.timgroup.com/{$host_parts[0]}:8000'>Status</a>"; 
    echo $status;
 }
 
