@@ -108,7 +108,8 @@ list($host_summary, $service_summary, $down_hosts, $known_hosts, $known_services
         echo "<td><blink>{$nagios_host_status[$host['host_state']]}</blink></td>";
         echo "<td>{$host['duration']}</td>";
         echo "<td>{$host['current_attempt']}/{$host['max_check_attempts']}</td>";
-        echo "<td class=\"desc\">{$host['detail']}</td>";
+        $safe_detail = htmlspecialchars($host['detail']);
+        echo "<td class=\"desc\">{$safe_detail})</td>";
         echo "</tr>";
     }
 ?>
@@ -157,7 +158,8 @@ if (count($known_hosts) > 0) {
                                                 "host" => $service['hostname'],
                                                 "service" => $service['service_name']]);
         echo "</span></td>";
-        echo "<td class='bold {$nagios_service_status_colour[$service['service_state']]} {$soft_style}'>{$blink_tag}{$service['service_name']}<span class='detail'>{$service['detail']}</span></td>";
+        $safe_detail = htmlspecialchars($service['detail']);
+        echo "<td class='bold {$nagios_service_status_colour[$service['service_state']]} {$soft_style}'>{$blink_tag}{$service['service_name']}<span class='detail'>{$safe_detail}</span></td>";
         echo "<td>{$service['duration']}</td>";
         echo "<td>{$service['current_attempt']}/{$service['max_attempts']}</td>";
         echo "</tr>";
