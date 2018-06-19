@@ -109,7 +109,7 @@ list($host_summary, $service_summary, $down_hosts, $known_hosts, $known_services
         echo "<td>{$host['duration']}</td>";
         echo "<td>{$host['current_attempt']}/{$host['max_check_attempts']}</td>";
         $safe_detail = htmlspecialchars($host['detail']);
-        echo "<td class=\"desc\">{$safe_detail})</td>";
+        echo "<td class=\"desc\">{$safe_detail}</td>";
         echo "</tr>";
     }
 ?>
