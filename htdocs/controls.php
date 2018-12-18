@@ -27,7 +27,7 @@ if (strpos($host_parts[0], 'app') !== false && sizeof($host_parts) > 2) {
    echo $status;
 }
 
-$logs = "<a class=\"btn btn-mini\" href=\"https://kibana.timgroup.com/app/kibana#/discover?query:(match:('@source_host':(query:{$host},type:phrase)))))=&_g=()&_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'logstash-*',key:'@source_host',negate:!f,value:{$host}),query:(match:('@source_host':(query:{$host},type:phrase))))),index:'logstash-*',interval:auto,query:'',sort:!('@timestamp',desc))\" target=\"_blank\">Logs</a>";
+$logs = "<a class=\"btn btn-mini\" href=\"https://kibana.timgroup.com/app/kibana#/discover?query:(match:('@source_host':(query:{$host},type:phrase)))))=&_g=()&_a=(columns:!(_source),filters:!(('\$state':(store:appState),meta:(alias:!n,disabled:!f,index:'logstash-*',key:'@source_host',negate:!f,value:{$host}),query:(match:('@source_host':(query:{$host},type:phrase))))),index:'logstash-*',interval:auto,query:'',sort:!('@timestamp',desc))\" target=\"_blank\">Logs</a>";
 echo $logs;
 ?>
 
