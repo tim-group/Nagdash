@@ -60,5 +60,22 @@ interface iNagiosConnection
      *  ["errors" => true/false, "details" => "message"]
      */
     public function setDowntime($target);
+
+    /**
+     * schedule a check for a host or service
+     *
+     * Parameter
+     *  $details - array with check meta data like
+     *             [
+     *              "host" => $host,
+     *              "service" => $service,
+     *              "check_time" => $check_time,
+     *              "forced" => $forced
+     *              ]
+     *
+     * Returns an array of the form
+     *  ["errors" => true/false, "details" => "message"]
+     */
+    public function scheduleCheck($target);
 }
 

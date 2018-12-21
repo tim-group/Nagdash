@@ -81,7 +81,6 @@ class NagiosLivestatus implements iNagiosConnection {
      */
     public function acknowledge($details) {
         return $this->post_to_api("/acknowledge_problem", $details);
-
     }
     public function enableNotifications($details) {
         return $this->post_to_api("/enable_notifications", $details);
@@ -91,6 +90,9 @@ class NagiosLivestatus implements iNagiosConnection {
     }
     public function setDowntime($details) {
         return $this->post_to_api("/schedule_downtime", $details);
+    }
+    public function scheduleCheck($details) {
+        throw new Exception('Not implemented');
     }
     public function getColumnMapping() {
         return [

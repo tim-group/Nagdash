@@ -6,6 +6,7 @@ $text   = (!isset($service['is_enabled'])) ? "Silence" : "Unsilence";
 $control = "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', '{$action}'); return false;\" class='btn btn-mini'>";
 $control .= "<i class='icon-volume-off'></i> {$text}</a>";
 echo $control;
+echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', 'recheck'); return false;\" class='btn btn-mini'> <i class='icon-refresh'></i>Recheck</a>";
 ?>
 <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
 <i class="icon-time"></i> Downtime <span class="caret"></span></a>
@@ -18,12 +19,12 @@ $control = "";
     }
 echo $control;
 ?>
-    </ul>
+</ul>
 
 <?php
-$host_parts = explode('.', $host);                                                                                                           
-if (strpos($host_parts[0], 'app') !== false && sizeof($host_parts) > 2) {                                                                    
-   $status = "<a class='btn btn-mini' target='_blank' href='https://status-pages-{$host_parts[2]}.timgroup.com/{$host_parts[0]}:8000'>Status</a>"; 
+$host_parts = explode('.', $host);
+if (strpos($host_parts[0], 'app') !== false && sizeof($host_parts) > 2) {
+   $status = "<a class='btn btn-mini' target='_blank' href='https://status-pages-{$host_parts[2]}.timgroup.com/{$host_parts[0]}:8000'>Status</a>";
    echo $status;
 }
 

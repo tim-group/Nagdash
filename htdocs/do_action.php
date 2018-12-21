@@ -5,21 +5,33 @@ require_once '../phplib/NagiosApi.php';
 require_once '../phplib/NagiosLivestatus.php';
 require_once '../phplib/utils.php';
 
-$supported_methods = ["ack", "downtime", "enable", "disable"];
+$supported_methods = ["ack", "downtime", "enable", "disable", "recheck"];
 
 if (!isset($_POST['nag_host'])) {
     echo "Are you calling this manually? This should be called by Nagdash only.";
 } else {
     $nagios_instance = $_POST['nag_host'];
     $action = $_POST['action'];
-    $details = [
-            "host" => $_POST['hostname'],
-            "service" => ($_POST['service']) ? $_POST['service'] : null,
-            "author" => function_exists("nagdash_get_user") ? nagdash_get_user() : "Nagdash",
-            "duration" => ($_POST['duration']) ? ($_POST['duration'] * 60) : null,
-            "comment" => "{$action} from Nagdash"
-            ];
 
+    $details = [
+        "host" => $_POST['hostname'],
+        "service" => ($_POST['service']) ? $_POST['service'] : null
+    ];
+
+    switch ($action) {
+        case "ack":
+            $details["author"] = function_exists("nagdash_get_user") ? nagdash_get_user() : "Nagdash";
+            $details["comment"] = "{$action} from Nagdash";
+            break;
+        case "downtime":
+            $details["author"] = function_exists("nagdash_get_user") ? nagdash_get_user() : "Nagdash";
+            $details["comment"] = "{$action} from Nagdash";
+            $details["duration"] = ($_POST['duration']) ? ($_POST['duration'] * 60) : null;
+            break;
+        case "recheck":
+            $details["forced"] = true;
+            break;
+    }
 
     if (!in_array($action, $supported_methods)) {
         echo "Nagios-api does not support this action ({$action}) yet. ";
@@ -44,6 +56,9 @@ if (!isset($_POST['nag_host'])) {
             break;
         case "disable":
             $ret = $nagios_api->disableNotifications($details);
+            break;
+        case "recheck":
+            $ret = $nagios_api->scheduleCheck($details);
             break;
         }
 
