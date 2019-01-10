@@ -35,6 +35,9 @@ div.header .totals          { float: right }
                       margin-top: 5px; margin-bottom: 5px; }
 table#broken_services tr { line-height: 22px; }
 table#broken_services tr td span.controls { display: inline-block; float: right }
+table#known_services  tr td span.controls { display: none; float: right }
+table#known_services  tr:hover td span.controls { display:inline-block; }
+table#known_services  tr { line-height: 22px; }
 table#broken_hosts    tr td span.controls { display: inline-block; float: right }
 table#broken_services tr td span.detail { display: block; font-size: 0.6em; }
 tr td span.controls  { display: inherit; }
