@@ -22,7 +22,6 @@ document.refresh_every_ms = <?php echo (isset($refresh_every_ms) ? $refresh_ever
 </script>
 <script src="js/nagdash.js"></script>
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/blinkftw.css">
 <link rel="stylesheet" href="css/main.css">
 <style type="text/css">
   <?php foreach ($nagios_hosts as $host) {
