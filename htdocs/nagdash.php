@@ -156,7 +156,7 @@ if (count($known_hosts) > 0) {
         echo "<td>{$service['hostname']} " . $tag . " <span class='controls'>";
         NagdashHelpers::render('controls.php', ["tag" => $service['tag'],
                                                 "host" => $service['hostname'],
-                                                "service" => $service['service_name']]);
+                                                "service" => $service]);
         echo "</span></td>";
         $safe_detail = htmlspecialchars($service['detail']);
         echo "<td class='bold {$nagios_service_status_colour[$service['service_state']]} {$soft_style}'>{$blink_tag}{$service['service_name']}<span class='detail'>{$safe_detail}</span></td>";

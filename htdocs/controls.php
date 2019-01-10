@@ -1,15 +1,15 @@
 <div class="btn-group">
 <?php
-$action = (!isset($service['is_enabled'])) ? "disable" : "enable";
-$text   = (!isset($service['is_enabled'])) ? "Silence" : "Unsilence";
-$control = "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', '{$action}'); return false;\" class='btn btn-mini'>";
 $ackAction = (isset($service['is_ack']) && $service['is_ack']) ? "unack" : "ack";
 $ackButtonText = (isset($service['is_ack']) && $service['is_ack']) ? "Un-ack" : "Ack";
 $ackButtonIcon = (isset($service['is_ack']) && $service['is_ack']) ? "icon-trash" : "icon-check";
 echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service['service_name']}', '${ackAction}'); return false;\" class='btn btn-mini'> <i class=$ackButtonIcon></i>$ackButtonText</a>";
+$action = (isset($service['is_enabled']) && $service['is_enabled']) ? "disable" : "enable";
+$text   = (isset($service['is_enabled']) && $service['is_enabled']) ? "Silence" : "Unsilence";
+$control = "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service['service_name']}', '{$action}'); return false;\" class='btn btn-mini'>";
 $control .= "<i class='icon-volume-off'></i> {$text}</a>";
 echo $control;
-echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', 'recheck'); return false;\" class='btn btn-mini'> <i class='icon-refresh'></i>Recheck</a>";
+echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service['service_name']}', 'recheck'); return false;\" class='btn btn-mini'> <i class='icon-refresh'></i>Recheck</a>";
 ?>
 <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
 <i class="icon-time"></i> Downtime <span class="caret"></span></a>
@@ -18,7 +18,7 @@ echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', 're
 $control = "";
  $timespans = array("10 minutes" => 10, "30 minutes" => 30, "60 minutes" => 60, "2 hours" => 120, "12 hours" => 720, "1 day" => 1440, "7 days" => 10080);
     foreach ($timespans as $name => $minutes) {
-        $control .= "<li><a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', 'downtime', '{$minutes}'); return false;\" >{$name}</a></li>";
+        $control .= "<li><a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service['service_name']}', 'downtime', '{$minutes}'); return false;\" >{$name}</a></li>";
     }
 echo $control;
 ?>
