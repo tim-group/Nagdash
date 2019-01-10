@@ -82,6 +82,9 @@ class NagiosLivestatus implements iNagiosConnection {
     public function acknowledge($details) {
         return $this->post_to_api("/acknowledge_problem", $details);
     }
+    public function remove_acknowledgement($details) {
+        throw new Exception('Not implemented');
+    }
     public function enableNotifications($details) {
         return $this->post_to_api("/enable_notifications", $details);
     }

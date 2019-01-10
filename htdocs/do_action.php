@@ -5,7 +5,7 @@ require_once '../phplib/NagiosApi.php';
 require_once '../phplib/NagiosLivestatus.php';
 require_once '../phplib/utils.php';
 
-$supported_methods = ["ack", "downtime", "enable", "disable", "recheck"];
+$supported_methods = ["ack", "unack", "downtime", "enable", "disable", "recheck"];
 
 if (!isset($_POST['nag_host'])) {
     echo "Are you calling this manually? This should be called by Nagdash only.";
@@ -47,6 +47,9 @@ if (!isset($_POST['nag_host'])) {
         switch ($action) {
         case "ack":
             $ret = $nagios_api->acknowledge($details);
+            break;
+        case "unack":
+            $ret = $nagios_api->remove_acknowledgement($details);
             break;
         case "downtime":
             $ret =  $nagios_api->setDowntime($details);

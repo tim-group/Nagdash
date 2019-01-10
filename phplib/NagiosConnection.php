@@ -29,6 +29,17 @@ interface iNagiosConnection
     public function acknowledge($details);
 
     /**
+     * cancel an acknowledgement on a host or service
+     *
+     * Parameter
+     *  $target - host and/or service to cancel acknowledgement for
+     *
+     * Returns an array of the form
+     *  ["errors" => true/false, "details" => "message"]
+     */
+    public function remove_acknowledgement($details);
+
+    /**
      * enable notifications for a host/service
      *
      * Parameter

@@ -1,9 +1,12 @@
 <div class="btn-group">
 <?php
-echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', 'ack'); return false;\" class='btn btn-mini'> <i class='icon-check'></i> Ack </a>";
 $action = (!isset($service['is_enabled'])) ? "disable" : "enable";
 $text   = (!isset($service['is_enabled'])) ? "Silence" : "Unsilence";
 $control = "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', '{$action}'); return false;\" class='btn btn-mini'>";
+$ackAction = (isset($service['is_ack']) && $service['is_ack']) ? "unack" : "ack";
+$ackButtonText = (isset($service['is_ack']) && $service['is_ack']) ? "Un-ack" : "Ack";
+$ackButtonIcon = (isset($service['is_ack']) && $service['is_ack']) ? "icon-trash" : "icon-check";
+echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service['service_name']}', '${ackAction}'); return false;\" class='btn btn-mini'> <i class=$ackButtonIcon></i>$ackButtonText</a>";
 $control .= "<i class='icon-volume-off'></i> {$text}</a>";
 echo $control;
 echo "<a href='#' onClick=\"nagios_action('{$tag}', '{$host}', '{$service}', 'recheck'); return false;\" class='btn btn-mini'> <i class='icon-refresh'></i>Recheck</a>";

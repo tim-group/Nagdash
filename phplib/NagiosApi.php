@@ -38,6 +38,9 @@ class NagiosAPI implements iNagiosConnection {
     public function acknowledge($details) {
         return $this->post_to_api("acknowledge_problem", $details);
     }
+    public function remove_acknowledgement($details) {
+        return $this->post_to_api("remove_acknowledgement", $details);
+    }
     public function enableNotifications($details) {
         return $this->post_to_api("enable_notifications", $details);
     }

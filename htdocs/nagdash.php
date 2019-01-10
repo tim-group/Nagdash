@@ -187,7 +187,13 @@ if (count($known_services) > 0) { ?>
         if (!$service['is_enabled']) $status_text = "disabled";
         echo "<tr class='known_service'>";
         $tag = NagdashHelpers::print_tag($service['tag'], count($nagios_hosts));
-        echo "<td>{$service['hostname']} " . $tag . "</td>";
+
+        echo "<td>{$service['hostname']} " . $tag . " <span class='controls'>";
+        NagdashHelpers::render('controls.php', ["tag" => $service['tag'],
+            "host" => $service['hostname'],
+            "service" => $service]);
+        echo "</span></td>";
+
         echo "<td>{$service['service_name']}</td>";
         echo "<td class='{$nagios_service_status_colour[$service['service_state']]}'>{$nagios_service_status[$service['service_state']]} ({$status_text})</td>";
         echo "<td>{$service['duration']}</td>";
