@@ -297,6 +297,7 @@ class NagdashHelpers {
                                 "downtime_remaining" => $downtime_remaining,
                                 "is_ack" => ($service_detail[$api_cols['ack']] > 0) ? true : false,
                                 "is_enabled" => ($service_detail['notifications_enabled'] > 0) ? true : false,
+                                "acked_by" => NagdashHelpers::get_acked_by($service_detail),
                             ));
                         }
                     }
@@ -317,6 +318,16 @@ class NagdashHelpers {
 
     }
 
+    static function get_acked_by($service_detail) {
+        // sort by keys which are comment IDs and hopefully monotonically increasing
+        krsort($service_detail['comments']);
+
+        $most_recent_comment = reset($service_detail['comments']);
+
+        $most_recent_comment_author = $most_recent_comment['author'];
+
+        return $most_recent_comment_author == "31-221-7-162.cust-31.exponential-e.net (31.221.7.162)" ? "nagdash user" : $most_recent_comment_author;
+    }
 
     /**
      * this is basically a factory function to give you back the proper nagios
